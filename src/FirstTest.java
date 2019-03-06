@@ -124,26 +124,62 @@ public class FirstTest {
 //                article_title
 //        );
 //}
-       @Test
-    public void TestEx2()
-       {
-           waitForElementAndClick(
+//       @Test
+//    public void TestEx3()
+//       {
+//           waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//           WebElement title_element = waitForElementPresent(
+//                By.id("org.wikipedia:id/search_src_text"),
+//                "Cannot Article Java programming language",
+//                15
+//        );
+//        String article_title = title_element.getAttribute("text");
+//
+//        Assert.assertEquals(
+//                "we see unexpected title!",
+//                "Search…",
+//                article_title
+//        );
+
+           @Test
+    public void TestEx3()
+    {
+        waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "cannot Find Search Wikipedia",
                 5
         );
-           WebElement title_element = waitForElementPresent(
-                By.id("org.wikipedia:id/search_src_text"),
-                "Cannot Article Java programming language",
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                "QA",
+                "Cannot find 'Object-oriented programming language' topic searching by Java1",
+                5
+        );
+        waitForElementPresent(
+                By.xpath("//*[@class='android.widget.LinearLayout']//*[@index='3']"),
+                "Cannot find any elements",
                 15
         );
-        String article_title = title_element.getAttribute("text");
+        waitForElementAndClick(
+                    By.id("org.wikipedia:id/search_close_btn"),
+                    "не найден элемент X",
+                    15
+            );
+        waitForElementPresent(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                    "список не пропал",
+                    5
+            );
+        waitForElementNotPresent(
+                    By.id("org.wikipedia:id/page_list_item_title"),
+                    "непропал список",
+                    5
+            );
 
-        Assert.assertEquals(
-                "we see unexpected title!",
-                "Search…",
-                article_title
-        );
 
 
        }
