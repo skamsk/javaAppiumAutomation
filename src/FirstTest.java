@@ -125,7 +125,7 @@ public class FirstTest {
 //        );
 //}
 //       @Test
-//    public void TestEx3()
+//    public void TestEx1()
 //       {
 //           waitForElementAndClick(
 //                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
@@ -145,43 +145,89 @@ public class FirstTest {
 //                article_title
 //        );
 
+//           @Test
+//    public void TestEx3()
+//    {
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search…')]"),
+//                "QA",
+//                "Cannot find 'Object-oriented programming language' topic searching by Java1",
+//                5
+//        );
+//        waitForElementPresent(
+//                By.xpath("//*[@class='android.widget.LinearLayout']//*[@index='3']"),
+//                "Cannot find any elements",
+//                15
+//        );
+//        waitForElementAndClick(
+//                    By.id("org.wikipedia:id/search_close_btn"),
+//                    "не найден элемент X",
+//                    15
+//            );
+//        waitForElementPresent(
+//                By.xpath("//*[contains(@text, 'Search…')]"),
+//                    "список не пропал",
+//                    5
+//            );
+//        waitForElementNotPresent(
+//                    By.id("org.wikipedia:id/page_list_item_title"),
+//                    "непропал список",
+//                    5
+//            );
+//
+//       }
+
            @Test
-    public void TestEx3()
-    {
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "cannot Find Search Wikipedia",
-                5
-        );
-        waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search…')]"),
-                "QA",
-                "Cannot find 'Object-oriented programming language' topic searching by Java1",
-                5
-        );
-        waitForElementPresent(
-                By.xpath("//*[@class='android.widget.LinearLayout']//*[@index='3']"),
-                "Cannot find any elements",
-                15
-        );
-        waitForElementAndClick(
-                    By.id("org.wikipedia:id/search_close_btn"),
-                    "не найден элемент X",
-                    15
-            );
-        waitForElementPresent(
-                By.xpath("//*[contains(@text, 'Search…')]"),
-                    "список не пропал",
-                    5
-            );
-        waitForElementNotPresent(
-                    By.id("org.wikipedia:id/page_list_item_title"),
-                    "непропал список",
-                    5
-            );
+    public void TestEx4() {
+               waitForElementAndClick(
+                       By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                       "cannot Find Search Wikipedia",
+                       5
+               );
+               waitForElementAndSendKeys(
+                       By.xpath("//*[contains(@text, 'Search…')]"),
+                       "QA",
+                       "Cannot find 'Object-oriented programming language' topic searching by Java1",
+                       5
+               );
 
-       }
 
+               waitForElementPresent(
+                       By.xpath("//*[@index='0']//*[contains(@text, 'QA')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+               waitForElementPresent(
+                       By.xpath("//*[@index='1']//*[contains(@text, 'QA')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+               waitForElementPresent(
+                       By.xpath("//*[@index='2']//*[contains(@text, 'Qa')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+               waitForElementPresent(
+                       By.xpath("//*[@index='3']//*[contains(@text, 'Qa')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+               waitForElementPresent(
+                       By.xpath("//*[@index='4']//*[contains(@text, 'QA')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+               waitForElementPresent(
+                       By.xpath("//*[@index='5']//*[contains(@text, 'Qa')]"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+           }
 
 
 
