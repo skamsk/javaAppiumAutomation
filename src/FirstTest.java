@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.util.List;
 
 import java.net.URL;
 
@@ -191,42 +191,27 @@ public class FirstTest {
                );
                waitForElementAndSendKeys(
                        By.xpath("//*[contains(@text, 'Search…')]"),
-                       "QA",
+                       "Java",
                        "Cannot find 'Object-oriented programming language' topic searching by Java1",
                        5
                );
+               waitForElementPresent(
+                       By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+                       "Cannot Article Java programming language",
+                       15
+               );
+                    List<WebElement> rows = driver.findElements(By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title' and contains(@text,'Java')]"));
+
+                    // print the total number of elements
+                    //System.out.println("Total selected rows are " + rows.size());
+                    //assert (rows.size() == 7);
+                    Assert.assertEquals(
+                            "we see not 7 titles with Java",
+                            7,
+                            rows.size()
+                    );
 
 
-               waitForElementPresent(
-                       By.xpath("//*[@index='0']//*[contains(@text, 'QA')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
-               waitForElementPresent(
-                       By.xpath("//*[@index='1']//*[contains(@text, 'QA')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
-               waitForElementPresent(
-                       By.xpath("//*[@index='2']//*[contains(@text, 'Qa')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
-               waitForElementPresent(
-                       By.xpath("//*[@index='3']//*[contains(@text, 'Qa')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
-               waitForElementPresent(
-                       By.xpath("//*[@index='4']//*[contains(@text, 'QA')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
-               waitForElementPresent(
-                       By.xpath("//*[@index='5']//*[contains(@text, 'Qa')]"),
-                       "Cannot Article Java programming language",
-                       15
-               );
            }
 
 
