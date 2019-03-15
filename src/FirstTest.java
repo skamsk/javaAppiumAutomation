@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,11 +34,13 @@ public class FirstTest {
         capabilities.setCapability("app","C:\\Users\\1\\Desktop\\JavaAppiumAutomation\\apks\\org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver.rotate(ScreenOrientation.PORTRAIT);
     }
 
     @After
     public  void tearDown()
     {
+
         driver.quit();
     }
 
@@ -330,23 +333,57 @@ public class FirstTest {
 //                5
 //        );
 
+//    @Test
+//    public void Ex6() {
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search…')]"),
+//                "Java",
+//                "Cannot find 'Object-oriented programming language' topic searching by Java",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementPresent(
+//                By.id("org.wikipedia:id/view_page_title_text"),
+//                "Cannot Article Java programming language",
+//                15
+//        );
+//        assertElementPresent(
+//                By.id("org.wikipedia:id/view_page_title_text"),
+//                "Title not found"
+//        );
+//
+//
+//    }
+
+
+
     @Test
-    public void Ex6() {
+    public void TestArticleInRotation() {
         waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "cannot Find Search Wikipedia",
                 5
         );
+        String search_line = "Java";
         waitForElementAndSendKeys(
                 By.xpath("//*[contains(@text, 'Search…')]"),
-                "Java",
+                search_line,
                 "Cannot find 'Object-oriented programming language' topic searching by Java",
                 5
         );
         waitForElementAndClick(
                 By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
-                "cannot Find Search Wikipedia",
-                5
+                "cannot find 'Object-oriented programming language' topic searching by " + search_line,
+                15
         );
         waitForElementPresent(
                 By.id("org.wikipedia:id/view_page_title_text"),
@@ -359,7 +396,64 @@ public class FirstTest {
         );
 
 
+        String title_before_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text",
+                "Cannot find title of article",
+                15
+        );
+
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+
+        String title_after_rotation = waitForElementAndGetAttribute(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "text",
+                "Cannot find title of article",
+                15
+        );
+        Assert.assertEquals(
+                "article title have been changed after screen rotation",
+                title_before_rotation,
+                title_after_rotation
+        );
+
+
     }
+
+
+
+
+@Test
+public void TestTitleInBackGround() {
+    waitForElementAndClick(
+            By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+            "cannot Find Search Wikipedia",
+            5
+    );
+    String search_line = "Java";
+    waitForElementAndSendKeys(
+            By.xpath("//*[contains(@text, 'Search…')]"),
+            search_line,
+            "Cannot find 'Object-oriented programming language' topic searching by Java",
+            5
+    );
+    waitForElementPresent(
+            By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+            "cannot find 'Object-oriented programming language' topic searching by " + search_line,
+            15
+    );
+    driver.runAppInBackground(15);
+
+    waitForElementPresent(
+            By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+            "cannot find article after returning from bsckground",
+            15
+    );
+
+
+
+}
+
 
 
 //    @Test
@@ -516,7 +610,11 @@ public class FirstTest {
 //        );
 //    }
 
-
+    private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds)
+    {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        return element.getAttribute(attribute);
+    }
 
 
 
