@@ -331,8 +331,7 @@ public class FirstTest {
 //        );
 
     @Test
-    public void Ex5()
-    {
+    public void Ex6() {
         waitForElementAndClick(
                 By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
                 "cannot Find Search Wikipedia",
@@ -354,135 +353,168 @@ public class FirstTest {
                 "Cannot Article Java programming language",
                 15
         );
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
-                "Cannot find button to open article options",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//*[@text='Add to reading list']"),
-                "Cannot find Add to reading list",
-                5
-        );
-        waitForElementAndClick(
-                By.id("org.wikipedia:id/onboarding_button"),
-                "Cannot find GOT IT",
-                5
-        );
-
-        waitForElementAndClear(
-                By.id("org.wikipedia:id/text_input"),
-                "Cannot clear title reading list title",
-                5
-        );
-
-        String name_of_folder = "Learning programming";
-
-        waitForElementAndSendKeys(
-                By.id("org.wikipedia:id/text_input"),
-                name_of_folder,
-                "can not input title",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//*[@text='OK']"),
-                "Cannot press OK",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-                "Cannot close article, cannot find x link",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "cannot Find Search Wikipedia",
-                5
-        );
-        waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search…')]"),
-                "Java",
-                "Cannot find 'Object-oriented programming language' topic searching by Java",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Wikimedia list article']"),
-                "cannot Find Search Wikipedia",
-                5
-        );
-        waitForElementPresent(
+        assertElementPresent(
                 By.id("org.wikipedia:id/view_page_title_text"),
-                "Java version history not visible",
-                15
-        );
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
-                "Cannot find button to open article options",
-                5
-        );
-
-        waitForElementAndClick(
-                       By.xpath("//*[contains(@text, 'Add to reading list')]"),
-                       "cannot add to reading list2",
-                      5
-               );
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Learning programming')]"),
-                "can not add to learning programming",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-                "Cannot close article, cannot find x link",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//android.widget.FrameLayout[@content-desc='My lists']"),
-                "Cannot find navigation button to My lists",
-                5
-        );
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, '"+name_of_folder+"')]"),
-                "Cannot find My reading list",
-                5
-        );
-        swipeElementToLeft(
-                By.xpath("//*[@text='object-oriented programming language']"),
-                "can not swipe"
-        );
-        waitForElementNotPresent(
-                By.xpath("//*[@text='object-oriented programming language']"),
-                "can not delete article",
-                5
-        );
-        int amount_of_articles = getAmountOfElements(
-                By.id("org.wikipedia:id/page_list_item_container")
-        );
-        Assert.assertTrue(
-                "We found >1 articles",
-                amount_of_articles ==1
+                "Title not found"
         );
 
 
-        waitForElementAndClick(
-                By.xpath("//*[@text='Java version history']"),
-                "Cannot find Java version history",
-                5
-        );
-        WebElement title_element = waitForElementPresent(
-                By.id("org.wikipedia:id/view_page_title_text"),
-                "Cannot Article Java version history",
-                5
-        );
-        String article_title = title_element.getAttribute("text");
-
-        Assert.assertEquals(
-                "we see unexpected title!",
-                "Java version history",
-                article_title
-        );
     }
+
+
+//    @Test
+//    public void Ex5()
+//    {
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search…')]"),
+//                "Java",
+//                "Cannot find 'Object-oriented programming language' topic searching by Java",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementPresent(
+//                By.id("org.wikipedia:id/view_page_title_text"),
+//                "Cannot Article Java programming language",
+//                15
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
+//                "Cannot find button to open article options",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[@text='Add to reading list']"),
+//                "Cannot find Add to reading list",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.id("org.wikipedia:id/onboarding_button"),
+//                "Cannot find GOT IT",
+//                5
+//        );
+//
+//        waitForElementAndClear(
+//                By.id("org.wikipedia:id/text_input"),
+//                "Cannot clear title reading list title",
+//                5
+//        );
+//
+//        String name_of_folder = "Learning programming";
+//
+//        waitForElementAndSendKeys(
+//                By.id("org.wikipedia:id/text_input"),
+//                name_of_folder,
+//                "can not input title",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[@text='OK']"),
+//                "Cannot press OK",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+//                "Cannot close article, cannot find x link",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search…')]"),
+//                "Java",
+//                "Cannot find 'Object-oriented programming language' topic searching by Java",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Wikimedia list article']"),
+//                "cannot Find Search Wikipedia",
+//                5
+//        );
+//        waitForElementPresent(
+//                By.id("org.wikipedia:id/view_page_title_text"),
+//                "Java version history not visible",
+//                15
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
+//                "Cannot find button to open article options",
+//                5
+//        );
+//
+//        waitForElementAndClick(
+//                       By.xpath("//*[contains(@text, 'Add to reading list')]"),
+//                       "cannot add to reading list2",
+//                      5
+//               );
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Learning programming')]"),
+//                "can not add to learning programming",
+//                5
+//        );
+//
+//        waitForElementAndClick(
+//                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+//                "Cannot close article, cannot find x link",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//android.widget.FrameLayout[@content-desc='My lists']"),
+//                "Cannot find navigation button to My lists",
+//                5
+//        );
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, '"+name_of_folder+"')]"),
+//                "Cannot find My reading list",
+//                5
+//        );
+//        swipeElementToLeft(
+//                By.xpath("//*[@text='object-oriented programming language']"),
+//                "can not swipe"
+//        );
+//        waitForElementNotPresent(
+//                By.xpath("//*[@text='object-oriented programming language']"),
+//                "can not delete article",
+//                5
+//        );
+//        int amount_of_articles = getAmountOfElements(
+//                By.id("org.wikipedia:id/page_list_item_container")
+//        );
+//        Assert.assertTrue(
+//                "We found >1 articles",
+//                amount_of_articles ==1
+//        );
+//
+//
+//        waitForElementAndClick(
+//                By.xpath("//*[@text='Java version history']"),
+//                "Cannot find Java version history",
+//                5
+//        );
+//        WebElement title_element = waitForElementPresent(
+//                By.id("org.wikipedia:id/view_page_title_text"),
+//                "Cannot Article Java version history",
+//                5
+//        );
+//        String article_title = title_element.getAttribute("text");
+//
+//        Assert.assertEquals(
+//                "we see unexpected title!",
+//                "Java version history",
+//                article_title
+//        );
+//    }
 
 
 
@@ -590,6 +622,12 @@ public class FirstTest {
     {
         List elements = driver.findElements(by);
         return  elements.size();
+    }
+
+    private void assertElementPresent(By by, String error_message)
+    {
+        int amount_of_titles = getAmountOfElements(by);
+        Assert.assertTrue("We not found titles",amount_of_titles ==1 );
     }
 
 }
