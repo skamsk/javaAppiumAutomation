@@ -31,34 +31,13 @@ public class FirstTest extends CoreTestCase {
     @Test
     public void testCancelSearch()
         {
-            MainPageObject.waitForElementAndClick(
-                    By.id("org.wikipedia:id/search_container"),
-                    "не найден элемент search_container по ID",
-                    5
-            );
-            MainPageObject.waitForElementAndSendKeys(
-                    By.xpath("//*[contains(@text, 'Search…')]"),
-                    "Java",
-                    "Cannot find 'Object-oriented programming language' topic searching by Java1",
-                    5
-            );
+            SearchPageObject SearchPageObject = new SearchPageObject(driver);
+            SearchPageObject.initSearchInput();
+            SearchPageObject.waitForCancelButtonToAppear();
+            SearchPageObject.clickCancelSearch();
+            SearchPageObject.waitForCancelButtonToDisappear();
 
-            MainPageObject.waitForElementAndClear(
-                    By.id("org.wikipedia:id/search_src_text"),
-                    "Не смог отчистить",
-                    5
-            );
 
-            MainPageObject.waitForElementAndClick(
-                    By.id("org.wikipedia:id/search_close_btn"),
-                    "не найден элемент search_close_btn по ID",
-                    5
-            );
-            MainPageObject.waitForElementNotPresent(
-                    By.id("org.wikipedia:id/search_close_btn"),
-                    "непропал Х по ID",
-                    5
-            );
         }
 
     @Test
