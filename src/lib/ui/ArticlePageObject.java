@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class ArticlePageObject extends MainPageObject{
 
     private static final String
+    TITLE_ARTICLE_IN_LIST="org.wikipedia:id/page_list_item_title",
     TITLE ="org.wikipedia:id/view_page_title_text",
     FOOTER_ELEMENT = "//*[@text='View page in browser']",
     OPTIONS_BUTTON ="//android.widget.ImageView[@content-desc='More options']",
@@ -32,6 +33,16 @@ public class ArticlePageObject extends MainPageObject{
         return title_element.getAttribute("text");
     }
 
+    public String getArticleTitleInMyList()
+    {
+        WebElement title_element = waitForTitleElementInMyList();
+        return title_element.getAttribute("text");
+    }
+
+    public WebElement waitForTitleElementInMyList()
+    {
+        return this.waitForElementPresent(By.id(TITLE_ARTICLE_IN_LIST),"Cannot find article in my list!",15);
+    }
 
     public void swipeToFooter()
     {
@@ -80,6 +91,22 @@ public class ArticlePageObject extends MainPageObject{
         );
     }
 
+    public void addArticleToexistingList(String name_of_folder)
+    {
+        this.waitForElementAndClick(
+                By.xpath( OPTIONS_BUTTON),
+                "Cannot find button to open article options",
+                5
+        );
+        this.waitForElementAndClick(
+                By.xpath(OPTIONS_ADD_TO_MY_LIST_BUTTON),
+                "Cannot find Add to reading list",
+                5
+        );
+
+
+    }
+
     public void closeArticle()
     {
         this.waitForElementAndClick(
@@ -89,10 +116,5 @@ public class ArticlePageObject extends MainPageObject{
         );
     }
 
-    public void assertTitlePresent()
-    {
-        this.assertElementPresent(
-                By.id("org.wikipedia:id/view_page_title_text"),
-                "Title not found"
-        );
+
 }

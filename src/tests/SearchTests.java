@@ -49,4 +49,5 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.waitForEmptyResultLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
+
 }

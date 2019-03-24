@@ -140,6 +140,11 @@ public class MainPageObject {
         int amount_of_titles = getAmountOfElements(by);
         Assert.assertTrue("We found titles",amount_of_titles ==0 );
     }
-
+    public void assertTitlePresent() {
+        this.assertElementPresent(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "Title not found"
+        );
+    }
 
 }
