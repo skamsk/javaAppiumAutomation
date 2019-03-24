@@ -11,7 +11,7 @@ private static final String
     SEARCH_INPUT = "//*[contains(@text, 'Search…')]",
     SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
     SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='{SUBSTRING}']",
-
+    SEARCH_CANCEL_RESULT ="//*[contains(@text, 'Search and read the free encyclopedia in your language')]",
     SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']",
     SEARCH_EMTY_RESULT_ELEMENT = "//*[contains(@text, 'No results found')]";
 
@@ -89,4 +89,13 @@ private static final String
         this.assertElementNotPresent(By.xpath(SEARCH_RESULT_ELEMENT),"We supposed not to find any result");
     }
 
+    public void assertCancelSearchInput()
+    {
+        this.waitForElementPresent(
+                By.xpath(SEARCH_CANCEL_RESULT),
+                "Cannot find empty result element",
+                15);
+
+
+    }
 }

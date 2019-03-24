@@ -71,7 +71,7 @@ public class FirstTest extends CoreTestCase {
         );
 
         SearchPageObject.clickCancelSearch();
-        SearchPageObject.waitForCancelButtonToDisappear();
+        SearchPageObject.assertCancelSearchInput();
         SearchPageObject.assertThereIsNoResultOfSearch();
 
        }
