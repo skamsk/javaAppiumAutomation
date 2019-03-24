@@ -88,4 +88,11 @@ public class ArticlePageObject extends MainPageObject{
                 5
         );
     }
+
+    public void assertTitlePresent()
+    {
+        this.assertElementPresent(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "Title not found"
+        );
 }

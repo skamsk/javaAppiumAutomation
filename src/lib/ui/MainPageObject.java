@@ -140,4 +140,6 @@ public class MainPageObject {
         int amount_of_titles = getAmountOfElements(by);
         Assert.assertTrue("We found titles",amount_of_titles ==0 );
     }
+
+
 }
