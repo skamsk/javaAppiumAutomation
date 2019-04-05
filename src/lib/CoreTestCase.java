@@ -24,6 +24,8 @@ public class CoreTestCase extends TestCase {
 
 
         driver = new AndroidDriver(new URL(AppiumURL), capabilities);
+
+
         driver.rotate(ScreenOrientation.PORTRAIT);
     }
 
