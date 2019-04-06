@@ -7,7 +7,7 @@ import io.appium.java_client.ios.IOSDriver;
 import junit.framework.TestCase;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import io.appium.java_client.ios.IOSDriver;
 import java.net.URL;
 
 public class iOSTestCase extends TestCase {
@@ -21,7 +21,7 @@ public class iOSTestCase extends TestCase {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("platformName","iOS");
-        capabilities.setCapability("deviceName","iPhone 8 Plus");
+        capabilities.setCapability("deviceName","iPhone SE");
         capabilities.setCapability("platformVersion","11.0");
         capabilities.setCapability("app","/Users/newuser/IdeaProjects/javaAppiumAutomation/apks/Wikipedia.app");
 

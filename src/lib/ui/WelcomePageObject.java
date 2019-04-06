@@ -21,7 +21,7 @@ public class WelcomePageObject extends MainPageObject {
 
     public void waitForLearnMoreLink()
     {
-        this.waitForElementPresent(By.id("Learn more about Wikipedia"), "Cannot find 'Learn more about Wikipedia' link", 10);
+        this.waitForElementPresent(By.id(STEP_LEARN_MORE_LINK), "Cannot find 'Learn more about Wikipedia' link", 10);
     }
 
     public void waitForNewWayToExploreText()
@@ -41,7 +41,7 @@ public class WelcomePageObject extends MainPageObject {
 
     public void clickNextButton()
     {
-        this.waitForElementAndClick(By.xpath("//XCUIElementTypeButton[@name=\"Next\"]"), "Cannot find click 'Next' link", 10);
+        this.waitForElementAndClick(By.id(NEXT_LINK), "Cannot find click 'Next' link", 10);
     }
 
     public void clickGetStartedButton() {

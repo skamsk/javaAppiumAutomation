@@ -1,4 +1,5 @@
 package tests.iOS;
+import lib.CoreTestCase;
 import lib.iOSTestCase;
 import lib.ui.WelcomePageObject;
 import  org.junit.Test;
@@ -10,16 +11,16 @@ public class GetStartedTest extends iOSTestCase{
     {
         WelcomePageObject WelcomePage = new WelcomePageObject(driver);
 
-        //WelcomePage.waitForLearnMoreLink();
+        WelcomePage.waitForLearnMoreLink();
         WelcomePage.clickNextButton();
 
-        //WelcomePage.waitForNewWayToExploreText();
+        WelcomePage.waitForNewWayToExploreText();
         WelcomePage.clickNextButton();
 
-        //WelcomePage.waitForAddOrEditPreferredLangText();
+        WelcomePage.waitForAddOrEditPreferredLangText();
         WelcomePage.clickNextButton();
 
-        //WelcomePage.waitForLearnMoreAboutDataCollectedText();
-        //WelcomePage.clickGetStartedButton();
+        WelcomePage.waitForLearnMoreAboutDataCollectedText();
+        WelcomePage.clickGetStartedButton();
     }
 }
