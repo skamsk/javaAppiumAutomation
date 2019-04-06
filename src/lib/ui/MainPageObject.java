@@ -41,15 +41,14 @@ public class MainPageObject {
     {
         WebElement element = waitForElementPresent(by, error_message, timeout_InSeconds);
         element.click();
-        return
-                element;
+        return element;
     }
 
     public WebElement waitForElementAndSendKeys(By by, String value, String error_message, long timeout_InSeconds)
     {
         WebElement element = waitForElementPresent(by, error_message, timeout_InSeconds);
         element.sendKeys(value);
-        return    element;
+        return  element;
     }
 
 
