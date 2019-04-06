@@ -15,23 +15,26 @@ public class CoreTestCase extends TestCase {
     protected AppiumDriver driver;
     private static String AppiumURL = "http://127.0.0.1:4723/wd/hub";
 
+
     @Override
     protected void setUp() throws Exception {
-        super.setUp();
-        DesiredCapabilities capabilities = this.getCapabilitiesByPlatformEnv();
+            super.setUp();
+            DesiredCapabilities capabilities = this.getCapabilitiesByPlatformEnv();
 
+        getDriversByPlatformEnv(capabilities);
 
-        //driver = new IOSDriver(new URL(AppiumURL), capabilities);
-       driver = new AndroidDriver(new URL(AppiumURL), capabilities);
-//        String platform = System.getenv("PLATFORM");
-//        if (platform.equals(PLATFORM_ANDROID)) {
-//            driver = new AndroidDriver(new URL(AppiumURL), capabilities);
-//        } else if (platform.equals(PLATFORM_IOS)) {
-//            driver = new AndroidDriver(new URL(AppiumURL), capabilities);
-//        } else {
-//            throw new Exception("Cannot get run platform from env variable.Platform value " + platform);
-//        }
         driver.rotate(ScreenOrientation.PORTRAIT);
+}
+
+    private void getDriversByPlatformEnv(DesiredCapabilities capabilities) throws Exception {
+        String platform = System.getenv("PLATFORM");
+        if (platform.equals(PLATFORM_ANDROID)) {
+            driver = new AndroidDriver(new URL(AppiumURL), capabilities);
+        } else if (platform.equals(PLATFORM_IOS)) {
+            driver = new IOSDriver(new URL(AppiumURL), capabilities);
+        } else {
+            throw new Exception("Cannot get run platform from env variable.Platform value " + platform);
+        }
     }
 
     @Override
@@ -54,6 +57,7 @@ public class CoreTestCase extends TestCase {
 
     private DesiredCapabilities getCapabilitiesByPlatformEnv() throws Exception {
         String platform = System.getenv("PLATFORM");
+        System.out.println(platform);
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         if (platform.equals(PLATFORM_ANDROID)) {
