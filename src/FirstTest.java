@@ -1,5 +1,6 @@
 import lib.CoreTestCase;
 import lib.ui.*;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -61,7 +62,7 @@ public class FirstTest extends CoreTestCase {
     @Test
     public void testEx3()
     {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("QA");
         int amount_of_search_result = SearchPageObject.getAmountOfFoundArticle();
@@ -110,7 +111,7 @@ public class FirstTest extends CoreTestCase {
     @Test
     public void testEx5()
     {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         MainPageObject MainPageObject = new MainPageObject(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
@@ -163,7 +164,7 @@ public class FirstTest extends CoreTestCase {
 
     @Test
     public void testEx6() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");

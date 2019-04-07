@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import sun.jvm.hotspot.oops.Instance;
 
 import java.net.URL;
 
@@ -13,6 +14,17 @@ public class Platform {
     private static final String PLATFORM_ANDROID = "android";
     private static final String APPIUM_URL = "http://127.0.0.1:4723/wd/hub";
 
+    private static Platform instance;
+    private Platform() {}
+
+    public static Platform getInstance()
+    {
+        if (instance == null){
+            instance = new Platform();
+        }
+        return  instance;
+    }
+
     public AppiumDriver getDriver() throws Exception
     {
 
@@ -20,7 +32,7 @@ public class Platform {
          if(this.isAndroid()){
              return  new AndroidDriver(URL,this.getAndroidDesiredCapabilities());
          } else if(this.isIOS()){
-             return  new IOSDriver(URL,this.getIOSDesiredCapabilities();
+             return  new IOSDriver(URL,this.getIOSDesiredCapabilities());
          }  else {
              throw new Exception("Cannot detected type of the driver. Platform value ="+this.getPlatformVar());
          }
