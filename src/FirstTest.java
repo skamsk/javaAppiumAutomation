@@ -143,7 +143,7 @@ public class FirstTest extends CoreTestCase {
         MyListsPageObject.swipeByArticleToDelete(article_title);
 
         int amount_of_articles = MainPageObject.getAmountOfElements(
-                By.id("org.wikipedia:id/page_list_item_container")
+                "id:org.wikipedia:id/page_list_item_container"
         );
         assertTrue(
                 "We found >1 articles",
@@ -170,7 +170,7 @@ public class FirstTest extends CoreTestCase {
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         //ArticlePageObject.waitForTitleElement();
-        ArticlePageObject.assertElementPresent(By.id("org.wikipedia:id/view_page_title_text"),"Not not found title");
+        ArticlePageObject.assertElementPresent("id:org.wikipedia:id/view_page_title_text","Not not found title");
 
     }
 }
