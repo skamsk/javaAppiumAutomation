@@ -111,9 +111,12 @@ abstract public class ArticlePageObject extends MainPageObject{
                 "Cannot find Add to reading list",
                 5
         );
-
-
     }
+
+    public void addArticleToMySaved(){
+        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON,"Cannot find button add to reading list",10);
+    }
+
 
     public void closeArticle()
     {

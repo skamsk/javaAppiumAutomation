@@ -1,6 +1,7 @@
 import lib.CoreTestCase;
 import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.MyListsPageObjectFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -133,7 +134,7 @@ public class FirstTest extends CoreTestCase {
         ArticlePageObject.waitForTitleElement();
 
         ArticlePageObject.addArticleToexistingList(name_of_folder);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
         MyListsPageObject.openFolderByName(name_of_folder);
         ArticlePageObject.closeArticle();
 
