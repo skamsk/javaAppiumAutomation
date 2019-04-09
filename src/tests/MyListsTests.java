@@ -37,6 +37,7 @@ public class MyListsTests extends CoreTestCase
 
         ArticlePageObject.closeArticle();
 
+
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
         NavigationUI.clickMyLists();
 
@@ -46,6 +47,8 @@ public class MyListsTests extends CoreTestCase
         }
 
         MyListsPageObject.swipeByArticleToDelete(article_title);
+
+
 
     }
 }

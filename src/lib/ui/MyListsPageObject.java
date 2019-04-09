@@ -10,6 +10,7 @@ abstract public class MyListsPageObject extends MainPageObject{
     protected static String
         SYNCH,
         FOLDER_BY_NAME_TPL,
+        ARTICLI_BY_TITLE_TPL_ID,
         ARTICLE_BY_TITLE_TPL;
 
     private static String getFolderXpathByName(String name_of_folder)
@@ -20,6 +21,11 @@ abstract public class MyListsPageObject extends MainPageObject{
     private static String getSaveArticleXpathByTitle(String article_title)
     {
         return ARTICLE_BY_TITLE_TPL.replace("{TITLE}", article_title);
+    }
+
+    private static String getSaveArticleIdByTitle(String article_title)
+    {
+        return ARTICLI_BY_TITLE_TPL_ID.replace("{TITLE}", article_title);
     }
 
     public MyListsPageObject(AppiumDriver driver)
@@ -48,6 +54,12 @@ abstract public class MyListsPageObject extends MainPageObject{
         this.waitForElementNotPresent(article_xpath,"Saved article still present with title "+article_title,15);
     }
 
+    public void waitForArticleToDisappearByID(String article_title)
+    {
+        String article_id = getSaveArticleIdByTitle(article_title);
+        this.waitForElementNotPresent(article_id,"Saved article still present with title "+ article_title,15);
+    }
+
 
     public void swipeByArticleToDelete(String article_title)
     {
@@ -66,7 +78,7 @@ abstract public class MyListsPageObject extends MainPageObject{
             this.clickElementToTheRightUpperCorner(article_xpath,"Cannot find saved article");
         }
 
-        this.waitForArticleToDisappearByTitle(article_title);
+        this.waitForArticleToDisappearByID(article_title);
     }
 
 }

@@ -1,8 +1,11 @@
+package tests;
+
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListsPageObjectFactory;
+import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -127,12 +130,13 @@ public class FirstTest extends CoreTestCase {
             ArticlePageObject.addArticleToMyList(name_of_folder);
         } else {
             ArticlePageObject.addArticleToMySaved();
+        }
 
             ArticlePageObject.closeArticle();
-
+            //SearchPageObject.clickCancelSearch();
             SearchPageObject.initSearchInput();
-            SearchPageObject.typeSearchLine("Java");
-            SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+            //SearchPageObject.typeSearchLine("Java");
+            SearchPageObject.clickByArticleWithSubstring("Programming language");
 
             ArticlePageObject.waitForTitleElement();
 
@@ -146,8 +150,20 @@ public class FirstTest extends CoreTestCase {
             }
 
             ArticlePageObject.closeArticle();
+
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.clickMyLists();
+
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
+        if (Platform.getInstance().isAndroid()){
+            MyListsPageObject.openFolderByName(name_of_folder);
         }
+
+        MyListsPageObject.swipeByArticleToDelete(article_title);
     }
+
+
+
     @Test
     public void testEx5()
     {

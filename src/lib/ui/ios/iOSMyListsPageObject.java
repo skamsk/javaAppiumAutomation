@@ -9,6 +9,7 @@ public class iOSMyListsPageObject extends MyListsPageObject {
     static {
         SYNCH = "id:places auth close";
         ARTICLE_BY_TITLE_TPL = "xpath://XCUIElementTypeLink[contains(@name,'{TITLE}')]";
+        ARTICLI_BY_TITLE_TPL_ID ="id:{TITLE}";
 
     }
 
