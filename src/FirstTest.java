@@ -15,7 +15,7 @@ import java.util.List;
 public class FirstTest extends CoreTestCase {
 
 
-
+    private String name_of_folder = "Learning programming";
 
 
 
