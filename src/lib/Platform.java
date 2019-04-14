@@ -4,7 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import sun.jvm.hotspot.oops.Instance;
+//import sun.jvm.hotspot.oops.Instance;
 
 import java.net.URL;
 
@@ -13,7 +13,6 @@ public class Platform {
     private static final String PLATFORM_IOS = "ios";
     private static final String PLATFORM_ANDROID = "android";
     private static final String APPIUM_URL = "http://127.0.0.1:4723/wd/hub";
-
     private static Platform instance;
     private Platform() {}
 

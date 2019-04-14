@@ -6,7 +6,7 @@ import lib.ui.WelcomePageObject;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.URL;
-import io.appium.java_client.ios.IOSDriver;
+//import io.appium.java_client.ios.IOSDriver;
 
 public class CoreTestCase extends TestCase {
 
