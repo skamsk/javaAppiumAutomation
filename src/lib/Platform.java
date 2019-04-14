@@ -60,6 +60,7 @@ public class Platform {
         return  capabilities;
     }
 
+
     private  DesiredCapabilities getIOSDesiredCapabilities()
     {
         DesiredCapabilities capabilities = new DesiredCapabilities();
