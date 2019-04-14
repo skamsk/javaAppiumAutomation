@@ -5,14 +5,16 @@ import junit.framework.TestCase;
 import lib.ui.WelcomePageObject;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import java.net.URL;
 //import io.appium.java_client.ios.IOSDriver;
 
 public class CoreTestCase extends TestCase {
 
 
-    protected AppiumDriver driver;
-    protected Platform Platform;
+    protected RemoteWebDriver driver;
+    //protected Platform Platform;
 
 
     @Override
@@ -34,20 +36,44 @@ public class CoreTestCase extends TestCase {
     }
 
     protected void rotateScreenPortrait() {
-        driver.rotate(ScreenOrientation.PORTRAIT);
+        if (driver instanceof AppiumDriver)
+        {
+            AppiumDriver driver = (AppiumDriver) this.driver;
+            driver.rotate(ScreenOrientation.PORTRAIT);
+        } else {
+            System.out.println("Method rotateScreenPortrait() does nothing this platform " +Platform.getInstance().getPlatformVar());
+        }
+
 
     }
 
     protected void rotateScreenLandscape() {
+        if (driver instanceof AppiumDriver)
+    {
+        AppiumDriver driver = (AppiumDriver) this.driver;
         driver.rotate(ScreenOrientation.LANDSCAPE);
+    } else {
+        System.out.println("Method rotateScreenLandscape does nothing this platform " +Platform.getInstance().getPlatformVar());
+    }
+
+
     }
 
     protected void backgroundApp(int seconds) {
-        driver.runAppInBackground(seconds);
+        if (driver instanceof AppiumDriver)
+        {
+            AppiumDriver driver = (AppiumDriver) this.driver;
+            driver.runAppInBackground(seconds);
+        } else {
+            System.out.println("Method backgroundApp does nothing this platform " +Platform.getInstance().getPlatformVar());
+        }
+
+
     }
 
     private void skipWelcomeForIOSApp() {
         if (Platform.getInstance().isIOS()) {
+            AppiumDriver driver = (AppiumDriver) this.driver;
             WelcomePageObject WelcomePageObject = new WelcomePageObject(driver);
             WelcomePageObject.clickSkip();
         }
