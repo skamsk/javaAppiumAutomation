@@ -25,7 +25,7 @@ public class CoreTestCase extends TestCase {
         driver = Platform.getInstance().getDriver();
         this.rotateScreenPortrait();
         this.skipWelcomeForIOSApp();
-
+        this.openWikiHomePageForMobileWeb();
     }
 
 
@@ -67,8 +67,13 @@ public class CoreTestCase extends TestCase {
         } else {
             System.out.println("Method backgroundApp does nothing this platform " +Platform.getInstance().getPlatformVar());
         }
+    }
 
-
+    protected void openWikiHomePageForMobileWeb()
+    {
+        if(Platform.getInstance().isMW()){
+            driver.get("https://en.m.wikipedia.org");
+        } else System.out.println("Method backgroundApp does nothing this platform " +Platform.getInstance().getPlatformVar());
     }
 
     private void skipWelcomeForIOSApp() {

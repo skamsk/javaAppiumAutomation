@@ -3,11 +3,15 @@ package lib;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 //import sun.jvm.hotspot.oops.Instance;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Platform {
 
@@ -34,7 +38,10 @@ public class Platform {
              return  new AndroidDriver(URL,this.getAndroidDesiredCapabilities());
          } else if(this.isIOS()){
              return  new IOSDriver(URL,this.getIOSDesiredCapabilities());
-         }  else {
+         } else if(this.isMW()){
+             return  new ChromeDriver(this.getMVChromeOptions());
+         }
+         else {
              throw new Exception("Cannot detected type of the driver. Platform value ="+this.getPlatformVar());
          }
     }
@@ -77,6 +84,24 @@ public class Platform {
         capabilities.setCapability("platformVersion","11.0");
         capabilities.setCapability("app","/Users/newuser/IdeaProjects/javaAppiumAutomation/apks/Wikipedia.app");
         return  capabilities;
+    }
+
+
+    private ChromeOptions getMVChromeOptions()
+    {
+        Map<String, Object> deviceMetrics = new HashMap<String, Object>();
+        deviceMetrics.put("width",360);
+        deviceMetrics.put("heigth",360);
+        deviceMetrics.put("pixelratio",3.0);
+
+        Map<String,Object> mobileEmulation = new HashMap<String,Object>();
+        mobileEmulation.put("deviceMetrics",deviceMetrics);
+        mobileEmulation.put("userAgent","Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D)");
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("windows-size=340,640");
+        return  chromeOptions;
+
     }
 
     private boolean isPlatform(String my_platform)
