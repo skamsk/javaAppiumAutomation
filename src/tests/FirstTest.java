@@ -1,5 +1,12 @@
+package tests;
+
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.*;
+import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.MyListsPageObjectFactory;
+import lib.ui.factories.NavigationUIFactory;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,7 +18,7 @@ import java.util.List;
 public class FirstTest extends CoreTestCase {
 
 
-
+    private String name_of_folder = "Learning programming";
 
 
 
@@ -61,7 +68,7 @@ public class FirstTest extends CoreTestCase {
     @Test
     public void testEx3()
     {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("QA");
         int amount_of_search_result = SearchPageObject.getAmountOfFoundArticle();
@@ -106,18 +113,68 @@ public class FirstTest extends CoreTestCase {
 //
 //           }
 //
+    @Test
+    public void testEx11() {
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
+
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+        ArticlePageObject.waitForTitleElement();
+
+        String article_title = ArticlePageObject.getArticleTitle();
+
+
+        if (Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleToMyList(name_of_folder);
+        } else {
+            ArticlePageObject.addArticleToMySaved();
+        }
+
+            ArticlePageObject.closeArticle();
+            //SearchPageObject.clickCancelSearch();
+            SearchPageObject.initSearchInput();
+            //SearchPageObject.typeSearchLine("Java");
+            SearchPageObject.clickByArticleWithSubstring("Programming language");
+
+            ArticlePageObject.waitForTitleElement();
+
+            String article_title2 = ArticlePageObject.getArticleTitle2();
+
+
+            if (Platform.getInstance().isAndroid()) {
+                ArticlePageObject.addArticleToMyList(name_of_folder);
+            } else {
+                ArticlePageObject.addArticleToMySaved();
+            }
+
+            ArticlePageObject.closeArticle();
+
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.clickMyLists();
+
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
+        if (Platform.getInstance().isAndroid()){
+            MyListsPageObject.openFolderByName(name_of_folder);
+        }
+
+        MyListsPageObject.swipeByArticleToDelete(article_title);
+    }
+
+
 
     @Test
     public void testEx5()
     {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         MainPageObject MainPageObject = new MainPageObject(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         ArticlePageObject.waitForTitleElement();
         String article_title = ArticlePageObject.getArticleTitle();
         String name_of_folder = "Learning programming";
@@ -131,7 +188,7 @@ public class FirstTest extends CoreTestCase {
         ArticlePageObject.waitForTitleElement();
 
         ArticlePageObject.addArticleToexistingList(name_of_folder);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
         MyListsPageObject.openFolderByName(name_of_folder);
         ArticlePageObject.closeArticle();
 
@@ -163,12 +220,12 @@ public class FirstTest extends CoreTestCase {
 
     @Test
     public void testEx6() {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         //ArticlePageObject.waitForTitleElement();
         ArticlePageObject.assertElementPresent("id:org.wikipedia:id/view_page_title_text","Not not found title");
 
