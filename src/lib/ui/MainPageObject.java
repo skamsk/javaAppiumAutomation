@@ -4,6 +4,7 @@ import io.appium.java_client.TouchAction;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -128,9 +129,34 @@ public class MainPageObject {
         }
     }
 
+    public void scrollWebPageUp(){
+        if(Platform.getInstance().isMW()){
+            JavascriptExecutor JExecutor = (JavascriptExecutor)driver;
+            JExecutor.executeScript("window.scrollBy(0,250)");
+        } else {
+            System.out.println("Metod scrollWebPageUp does nothing for Platforms  "+ Platform.getInstance().getPlatformVar());
+        }
+    }
+    public void scrollWebPageElementNotVisible(String locator, String error_message, int maxSwipes){
+        int alreadySwipe =0;
+        WebElement element = this.waitForElementPresent(locator, error_message);
+        while (!this.isElementLocatedOnTheScreen(locator)){
+            scrollWebPageUp();
+            ++alreadySwipe;
+            if(alreadySwipe>maxSwipes){
+                Assert.assertTrue(error_message,element.isDisplayed());
+            }
+        }
+    }
+
     public boolean isElementLocatedOnTheScreen(String locator)
     {
         int element_location_by_y = this.waitForElementPresent(locator,"cannot find element",1).getLocation().getY();
+        if (Platform.getInstance().isMW()){
+           JavascriptExecutor JExecutor = (JavascriptExecutor) driver;
+           Object JSresult = JExecutor.executeScript("return window.pageYOffset");
+           element_location_by_y -= Integer.parseInt(JSresult.toString());
+        }
         int screen_size_by_y = driver.manage().window().getSize().getHeight();
         return element_location_by_y<screen_size_by_y;
     }

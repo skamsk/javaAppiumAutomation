@@ -1,21 +1,23 @@
 package lib.ui.factories;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
-import lib.ui.MyListsPageObject;
-import lib.ui.android.AndroidMyListsPageObject;
-import lib.ui.ios.iOSMyListsPageObject;
+import lib.ui.SearchPageObject;
+import lib.ui.android.AndroidSearchPageObject;
+import lib.ui.ios.iOSSearchPageObject;
+import lib.ui.mobile_web.MVSearchPageObject;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 public class MyListsPageObjectFactory {
-    public  static MyListsPageObject get(RemoteWebDriver driver)
+    public  static SearchPageObject get(RemoteWebDriver driver)
     {
         if(Platform.getInstance().isAndroid()) {
-            return new AndroidMyListsPageObject(driver);
-        } else { return new iOSMyListsPageObject(driver);
-
-
+            return new AndroidSearchPageObject(driver);
         }
+        else if(Platform.getInstance().isIOS())
+        { return new iOSSearchPageObject(driver);}
+        else
+        {return new MVSearchPageObject(driver);}
     }
 }
+
