@@ -91,15 +91,15 @@ public class Platform {
     {
         Map<String, Object> deviceMetrics = new HashMap<String, Object>();
         deviceMetrics.put("width",360);
-        deviceMetrics.put("heigth",360);
+        deviceMetrics.put("heigth",640);
         deviceMetrics.put("pixelratio",3.0);
 
         Map<String,Object> mobileEmulation = new HashMap<String,Object>();
         mobileEmulation.put("deviceMetrics",deviceMetrics);
-        mobileEmulation.put("userAgent","Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D)");
+        mobileEmulation.put("userAgent","Chrome/18.0.1025.166");
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("windows-size=340,640");
+        chromeOptions.addArguments("window-size=340,640");
         return  chromeOptions;
 
     }
