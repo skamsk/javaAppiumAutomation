@@ -13,7 +13,8 @@ abstract public class MyListsPageObject extends MainPageObject{
         FOLDER_BY_NAME_TPL,
         ARTICLI_BY_TITLE_TPL_ID,
         REMOVE_FROM_SAVED_BUTTON,
-        ARTICLE_BY_TITLE_TPL;
+        ARTICLE_BY_TITLE_TPL,
+        CONTAINS_TEXT_LOCATOR;
 
 
     private static String getFolderXpathByName(String name_of_folder)
@@ -34,6 +35,11 @@ abstract public class MyListsPageObject extends MainPageObject{
     private static String getSaveArticleIdByTitle(String article_title)
     {
         return ARTICLI_BY_TITLE_TPL_ID.replace("{TITLE}", article_title);
+    }
+
+    private static String getSaveTextLoactor(String text)
+    {
+        return CONTAINS_TEXT_LOCATOR.replace("{TEXT}", text);
     }
 
 
@@ -70,6 +76,12 @@ abstract public class MyListsPageObject extends MainPageObject{
         this.waitForElementNotPresent(article_id,"Saved article still present with title "+ article_title,15);
     }
 
+    public void waitForElementWithText(String text)
+    {
+        String text_locator = getSaveTextLoactor(text);
+
+        this.waitForElementPresent(text_locator, "Not found element with text"+text);
+    }
 
     public void swipeByArticleToDelete(String article_title)
     {
@@ -88,7 +100,7 @@ abstract public class MyListsPageObject extends MainPageObject{
         } else {
             String remove_locator = getRemoveButtonByTitle(article_title);
             this.waitForElementAndClick(remove_locator,
-                    "cannot find button ti remove",
+                    "cannot find button to remove",
                     10);
         }
 
@@ -100,7 +112,9 @@ abstract public class MyListsPageObject extends MainPageObject{
         if (Platform.getInstance().isMW()){
             driver.navigate().refresh();
         }
-        this.waitForArticleToDisappearByID(article_title);
+
+        this.waitForElementWithText("JavaScript");
+        //this.waitForArticleToDisappearByID(article_title);
     }
 
 }

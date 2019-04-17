@@ -15,6 +15,94 @@ public class MyListsTests extends CoreTestCase
     private static final String
             login ="skamsk",
             password="12365400";
+
+
+    @Test
+    public void testEx17() {
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.clickByArticleWithSubstring("bject-oriented programming language");
+
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+        ArticlePageObject.waitForTitleElement();
+
+        String article_title = ArticlePageObject.getArticleTitle();
+
+        if (Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleToMyList(name_of_folder);
+        } else {
+            ArticlePageObject.addArticleToMySaved();
+        }
+
+
+        if (Platform.getInstance().isMW()) {
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("we are not on the same after login",
+                    article_title,
+                    ArticlePageObject.getArticleTitle()
+            );
+
+            ArticlePageObject.addArticleToMySaved();
+        }
+        //ArticlePageObject.closeArticle();
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.clickByArticleWithSubstring("rogramming language");
+
+
+        ArticlePageObject.waitForTitleElement();
+
+        String article_title2 = ArticlePageObject.getArticleTitle();
+
+        if (Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleToMyList(name_of_folder);
+        } else {
+            ArticlePageObject.addArticleToMySaved();
+        }
+
+
+        //if (Platform.getInstance().isMW()) {
+//            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+//            Auth.clickAuthButton();
+//            Auth.enterLoginData(login, password);
+//            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals("we are not on the same after login",
+                    article_title2,
+                    ArticlePageObject.getArticleTitle()
+            );
+
+            ArticlePageObject.addArticleToMySaved();
+        //}
+
+        ArticlePageObject.closeArticle();
+
+
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        NavigationUI.OpenNavigation();
+        NavigationUI.clickMyLists();
+
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
+        if (Platform.getInstance().isAndroid()){
+            MyListsPageObject.openFolderByName(name_of_folder);
+        }
+
+
+        MyListsPageObject.swipeByArticleToDelete(article_title);
+
+    }
+
+
     @Test
     public void testsaveFirstArticleToMyList() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
