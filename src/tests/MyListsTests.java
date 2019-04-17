@@ -27,12 +27,13 @@ public class MyListsTests extends CoreTestCase
 
         String article_title = ArticlePageObject.getArticleTitle();
 
-
         if(Platform.getInstance().isAndroid()){
             ArticlePageObject.addArticleToMyList(name_of_folder);
         } else {
             ArticlePageObject.addArticleToMySaved();
         }
+
+
         if(Platform.getInstance().isMW()){
             AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
             Auth.clickAuthButton();

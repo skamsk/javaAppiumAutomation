@@ -75,7 +75,7 @@ public class MainPageObject {
                     this.waitForElementAndClick(locator,error_message,1);
                 }
             }
-            ++current_attemps;
+            ++ current_attemps;
         }
     }
 

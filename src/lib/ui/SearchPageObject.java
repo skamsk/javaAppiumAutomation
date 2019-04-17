@@ -51,7 +51,7 @@ abstract public class SearchPageObject extends MainPageObject{
 
     public void typeSearchLine(String search_line)
     {
-       this.waitForElementAndSendKeys(SEARCH_INPUT, search_line,"cannot find and type into serarch input",5);
+       this.waitForElementAndSendKeys(SEARCH_INPUT, search_line,"cannot find and type into serarch input",10);
     }
 
     public void waitForSearchResult(String substring)

@@ -32,14 +32,14 @@ public class NavigationUI extends MainPageObject{
             this.tryClickElementWithFewAttempts(
                     MY_LISTS_LINK,
                     "Cannot find navigation button to My lists",
+                    15
+            );
+        } else {
+            this.waitForElementAndClick(
+                    MY_LISTS_LINK,
+                    "Cannot find navigation button to My lists",
                     5
             );
         }
-
-        this.waitForElementAndClick(
-                MY_LISTS_LINK,
-                "Cannot find navigation button to My lists",
-                5
-        );
     }
 }

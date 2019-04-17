@@ -8,7 +8,7 @@ public class MVSearchPageObject extends SearchPageObject {
     static {
         //SEARCH_INIT_ELEMENT ="xpath://a[contains(text(),'Open main menu')]";
         SEARCH_INIT_ELEMENT = "css:button#searchIcon";
-        SEARCH_INPUT = "css:form>input[type='search']";
+        SEARCH_INPUT = "css:form>input[class='search']";
         SEARCH_CANCEL_BUTTON = "css:button.cancel";
 
 
